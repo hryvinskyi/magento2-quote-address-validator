@@ -73,3 +73,7 @@ This is useful for detecting country-specific errors in addresses and names and 
 ## Notes
 
 Preference for `\Magento\Quote\Model\BillingAddressManagement` added only for correct error message display. (added `LocalizedException` catch to `assign` method)
+
+## Demo
+
+![Admin](./docs/images/configuration_settings_stores_magento_admin.png)

@@ -29,7 +29,7 @@
                 <field id="firstname_regex" translate="label" sortOrder="300" showInDefault="1"
                        showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Firstname Regex</label>
-                    <comment><![CDATA[Please fill correct regex. Like: <code>/^([\p{L}' ]{3,50})$/u</code>]]></comment>
+                    <comment><![CDATA[Please fill correct regex. Like: <code>/^([\p{L}' \-]{2,50})$/u</code>]]></comment>
                     <depends>
                         <field id="enabled">1</field>
                         <field id="enabled_firstname">1</field>
@@ -54,7 +54,7 @@
                 <field id="lastname_regex" translate="label" sortOrder="600" showInDefault="1"
                        showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Lastname Regex</label>
-                    <comment><![CDATA[Please fill correct regex. Like: <code>/^([\p{L}' ]{3,50})$/u</code>]]></comment>
+                    <comment><![CDATA[Please fill correct regex. Like: <code>/^([\p{L}' \-]{2,50})$/u</code>]]></comment>
                     <depends>
                         <field id="enabled">1</field>
                         <field id="enabled_lastname">1</field>
