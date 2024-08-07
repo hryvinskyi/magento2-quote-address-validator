@@ -9,6 +9,8 @@ use Magento\Quote\Api\Data\AddressInterface;
 
 class BillingAddressManagement extends \Magento\Quote\Model\BillingAddressManagement
 {
+    private $shippingAddressAssignment;
+
     public function assign($cartId, AddressInterface $address, $useForShipping = false)
     {
         /** @var \Magento\Quote\Model\Quote $quote */
