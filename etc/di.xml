@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Hryvinskyi\QuoteAddressValidator\Model\ConfigInterface"
+                type="Hryvinskyi\QuoteAddressValidator\Model\Config"/>
+
+    <preference for="Hryvinskyi\QuoteAddressValidator\Model\AddressValidationInterface"
+                type="Hryvinskyi\QuoteAddressValidator\Model\AddressValidation"/>
+
+    <!-- This is only for show correct error message (added LocalizedException catch) -->
+    <preference for="Magento\Quote\Model\BillingAddressManagement"
+                type="Hryvinskyi\QuoteAddressValidator\Model\BillingAddressManagement"/>
+
+    <type name="Magento\Quote\Model\QuoteAddressValidator">
+        <plugin name="add_attributes_validation"
+                type="Hryvinskyi\QuoteAddressValidator\Plugin\AddAttributesValidation"
+                sortOrder="10"/>
+    </type>
+
+    <type name="Hryvinskyi\QuoteAddressValidator\Model\AddressValidation">
+        <arguments>
+            <argument name="validations" xsi:type="array">
+                <item name="firstname" xsi:type="object">Hryvinskyi\QuoteAddressValidator\Model\Validation\Firstname</item>
+                <item name="lastname" xsi:type="object">Hryvinskyi\QuoteAddressValidator\Model\Validation\Lastname</item>
+                <item name="street" xsi:type="object">Hryvinskyi\QuoteAddressValidator\Model\Validation\Street</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="hryvinskyi_quoteaddressvalidator_check_existing_addresses" xsi:type="object">
+                    Hryvinskyi\QuoteAddressValidator\Console\Command\CheckExistingAddresses
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

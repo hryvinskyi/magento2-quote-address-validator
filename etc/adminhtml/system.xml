@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="quote_address_validator" translate="label" type="text" sortOrder="800" showInDefault="1"
+                 showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Quote Address Validation</label>
+            <tab>security</tab>
+            <resource>Hryvinskyi_QuoteAddressValidator::config</resource>
+
+            <group id="general" translate="label" type="text" sortOrder="1000" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Default Configuration</label>
+                <field id="enabled" translate="label" type="select" sortOrder="100" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable</label>
+                    <comment>Enable Quote Address Validation</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="enabled_firstname" translate="label" type="select" sortOrder="200" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable Firstname Validation</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="firstname_regex" translate="label" sortOrder="300" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Firstname Regex</label>
+                    <comment><![CDATA[Please fill correct regex. Like: <code>/^([\p{L}' ]{3,50})$/u</code>]]></comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                        <field id="enabled_firstname">1</field>
+                    </depends>
+                </field>
+                <field id="firstname_error_message" translate="label" sortOrder="400" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>First Firstname Message</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                        <field id="enabled_firstname">1</field>
+                    </depends>
+                </field>
+                <field id="enabled_lastname" translate="label" type="select" sortOrder="500" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable Lastname Validation</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="lastname_regex" translate="label" sortOrder="600" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Lastname Regex</label>
+                    <comment><![CDATA[Please fill correct regex. Like: <code>/^([\p{L}' ]{3,50})$/u</code>]]></comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                        <field id="enabled_lastname">1</field>
+                    </depends>
+                </field>
+                <field id="lastname_error_message" translate="label" sortOrder="700" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Lastname Error Message</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                        <field id="enabled_lastname">1</field>
+                    </depends>
+                </field>
+                <field id="enabled_street" translate="label" type="select" sortOrder="800" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable Street Validation</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="street_regex" translate="label" sortOrder="900" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Street Regex</label>
+                    <comment><![CDATA[
+<p>Please fill correct regex. Like: <code>/^[\p{L}0-9\s,'\-\.#\/\\\\]*$/u</code></p>
+<p>Explanation of the Regex</p>
+<ul>
+    <li><code>^</code>: asserts position at start of the string</li>
+    <li><code>[\p{L}0-9\s,'-\.#\/]</code>: A character class that allows:
+        <ul style="margin-left:25px">
+            <li><code>\p{L}</code>: in a regex pattern, it will match any character that is considered a letter in Unicode.</li>
+            <li><code>0-9</code>: Any digit.</li>
+            <li><code>\s</code>: Any whitespace character (spaces, tabs, line breaks).</li>
+            <li><code>,'</code>: Comma and apostrophe.</li>
+            <li><code>\-</code>: Hyphen. (Note that the hyphen is escaped because it is a special character in regex.)</li>
+            <li><code>\.</code>: Period. (Note that the dot is escaped because it is a special character in regex.)</li>
+            <li><code>#</code>: Hash symbol.</li>
+            <li><code>\/</code>: Forward slash. (Note that the slash is escaped because it is a special character in regex.)</li></li>
+            <li><code>\\\\</code>: Backslash (the double backslash is necessary to escape the backslash itself in PHP strings and regex).</li></li>
+        </ul>
+    </li>
+    <li><code>*</code>: Matches zero or more occurrences of the preceding element.</li>
+    <li><code>$</code>: asserts position at the end of the string.</li>
+    <li><code>u</code>: modifier: Treats the pattern as UTF-8, necessary for proper Unicode matching.</li>
+</ul>
+<style>
+    code {
+        background-color: #f9f2f4;
+        padding: 2px 4px;
+        border-radius: 3px;
+        border: 1px solid #e1b3c3;
+    }
+</style>
+]]></comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                        <field id="enabled_street">1</field>
+                    </depends>
+                </field>
+                <field id="street_error_message" translate="label" sortOrder="1000" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Street Error Message</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                        <field id="enabled_street">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

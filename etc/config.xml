@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <quote_address_validator>
+            <general>
+                <enabled>1</enabled>
+                <enabled_firstname>1</enabled_firstname>
+                <firstname_regex>/^([\p{L}' \-]{2,50})$/u</firstname_regex>
+                <firstname_error_message>First Name "%1" is not valid, please use only letters, spaces, hyphens (-), apostrophes ('). First Name must be between 2 and 50 characters.</firstname_error_message>
+                <enabled_lastname>1</enabled_lastname>
+                <lastname_regex>/^([\p{L}' \-]{2,50})$/u</lastname_regex>
+                <lastname_error_message>Last Name "%1" is not valid, please use only letters, spaces, hyphens (-), apostrophes ('). Last Name must be between 2 and 50 characters.</lastname_error_message>
+                <enabled_street>1</enabled_street>
+                <street_regex>/^[\p{L}0-9\s,'\-\.#\/\\\\]*$/u</street_regex>
+                <street_error_message>Street is not valid, please use only letters, numbers, spaces, commas (,), apostrophes ('), hyphens (-), periods (.), slashes (/), backslashes (\), and pound signs (#).</street_error_message>
+            </general>
+        </quote_address_validator>
+    </default>
+</config>
