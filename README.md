@@ -60,38 +60,73 @@ This is useful for detecting country-specific errors in addresses and names and 
 
 ## Example Regex Patterns
 
- - Firstname Regex: `/^([\p{L}' ]{3,50})$/u`
- - Lastname Regex: `/^([\p{L}' ]{3,50})$/u`
- - Street Regex: `/^[\p{L}0-9\s,'\-\.#\/\\\\]*$/u`
+ - Firstname Regex: `/^([\p{L}0-9&#$€£¥¢%&?!()@_:;,'+\s\-\.\*\/\\\\]{1,50})$/u`
+ - Lastname Regex: `/^([\p{L}0-9&#$€£¥¢%&?!()@_:;,'+\s\-\.\*\/\\\\]{1,50})$/u`
+ - Street Regex: `/^([\p{L}0-9&#$€£¥¢%&?!()@_:;,'+\s\-\.\*\/\\\\]*)$/u`
 
 ## Explanation of Regex
 
- - `^` - Asserts position at the start of the string.
- - `[\p{L}0-9\s,'\-\.#\/\\\\]` Character class allowing:
-    - **`\p{L}`** - in a regex pattern, it will match any character that is considered a letter in Unicode.
-    - **`0-9`** - Any digit.
-    - **`\s`** - Any whitespace character (spaces, tabs, line breaks)
-    - **`,'`** - Comma, apostrophe and hyphen.
-    - **`\-`** - Hyphen. (Note that the hyphen is escaped because it is a special character in regex.)
-    - **`\.`** - Period. (Note that the dot is escaped because it is a special character in regex.)
-    - **`#`** - Hash symbol.
-    - **`\/`** - Forward slash. (Note that the slash is escaped because it is a special character in regex.)
-    - **`\\\\`**  Backslash (the double backslash is necessary to escape the backslash itself in PHP strings and regex)
- - **`{3,50}`** - Match between 3 and 50 characters.
- - **`*`** - Matches zero or more occurrences of the preceding element.
- - **`$`** - End of the string.
- - **`u`** - modifier: Treats the pattern as UTF-8, necessary for proper Unicode matching.
-
+```markdown
+- `^`: asserts position at start of the string
+- `[\p{L}0-9&#$€£¥¢%&?!()@_:;,'+\s\-\.\*\/\\\\]`: A character class that allows:
+    - `\p{L}`: in a regex pattern, it will match any character that is considered a letter in Unicode.
+    - `0-9`: Any digit.
+    - `&`: Ampersand.
+    - `#`: Hash symbol.
+    - `$`: Dollar sign.
+    - `€`: Euro sign.
+    - `£`: Pound sign.
+    - `¥`: Yen sign.
+    - `¢`: Cent sign.
+    - `%`: Percent sign.
+    - `?`: Question mark.
+    - `!`: Exclamation mark.
+    - `(`: Opening parenthesis.
+    - `)`: Closing parenthesis.
+    - `@`: At symbol.
+    - `_`: Underscore.
+    - `:`: Colon.
+    - `;`: Semicolon.
+    - `,`: Comma.
+    - `'`: Apostrophe.
+    - `+`: Plus sign.
+    - `\s`: Any whitespace character (spaces, tabs, line breaks).
+    - `\-`: Hyphen. (Note that the hyphen is escaped because it is a special character in regex.)
+    - `\.`: Period. (Note that the dot is escaped because it is a special character in regex.)
+    - `\*`: Asterisk. (Note that the asterisk is escaped because it is a special character in regex.)
+    - `\/`: Forward slash. (Note that the slash is escaped because it is a special character in regex.)
+    - `\\\\`: Backslash (the double backslash is necessary to escape the backslash itself in PHP strings and regex).
+- `*`: Matches zero or more occurrences of the preceding element.
+- `{1,50}`: Matches between 1 and 50 occurrences of the preceding element.
+- `$`: asserts position at the end of the string.
+- `u`: modifier: Treats the pattern as UTF-8, necessary for proper Unicode matching.
+```
 
 ## Notes
 
 Preference for `\Magento\Quote\Model\BillingAddressManagement` added only for correct error message display. (added `LocalizedException` catch to `assign` method)
 
 ## Demo Backend
+<details>
+<summary>Configuration</summary>
 
 ![Admin](./docs/images/configuration_settings_stores_magento_admin.gif)
+</details>
+
 
 
 ## Demo Frontend
 
-![Admin](./docs/images/checkout_testing.gif)
+<details>
+<summary>Checkout shipping address validation</summary>
+
+![checkout](./docs/images/checkout_testing.gif)
+</details>
+
+
+<details>
+<summary>Checkout billing address validation</summary>
+
+![checkout](./docs/images/checkout_testing_billing.gif)
+</details>
+
