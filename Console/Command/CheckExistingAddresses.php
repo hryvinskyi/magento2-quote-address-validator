@@ -94,7 +94,8 @@ class CheckExistingAddresses extends Command
         if ($found === 0) {
             $infoStyle = new OutputFormatterStyle('white', 'green');
             $output->getFormatter()->setStyle('info', $infoStyle);
-            $output->writeln('All addresses are valid');
+            $formattedInfoBlock = $formatter->formatBlock(['RESULT:', 'All addresses are valid'], 'info', TRUE);
+            $output->writeln($formattedInfoBlock);
         } else {
             $infoStyle = new OutputFormatterStyle('white', 'red');
             $output->getFormatter()->setStyle('info', $infoStyle);
