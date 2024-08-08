@@ -37,7 +37,7 @@
                 </field>
                 <field id="firstname_error_message" translate="label" sortOrder="400" showInDefault="1"
                        showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>First Firstname Message</label>
+                    <label>Firstname Message</label>
                     <depends>
                         <field id="enabled">1</field>
                         <field id="enabled_firstname">1</field>
