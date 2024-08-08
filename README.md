@@ -21,7 +21,7 @@ The `Hryvinskyi_QuoteAddressValidator` module provides validation for quote addr
    
 ## Configuration
 
-1. Navigate to `Stores > Configuration > Hryvinskyi > Quote Address Validator.`
+1. Navigate to `Stores > Configuration > Security > Quote Address Validator.`
 2. Configure the following fields:
     - **Enable:** Set to `Yes` to enable the module.
     - **Enable Firstname Validation** Set to `Yes` to enable validation for the firstname field.
