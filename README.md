@@ -26,7 +26,7 @@ The `Hryvinskyi_QuoteAddressValidator` module provides validation for quote addr
     - **Enable:** Set to `Yes` to enable the module.
     - **Enable Firstname Validation** Set to `Yes` to enable validation for the firstname field.
     - **Firstname Regex** Enter a regex pattern to validate the firstname field.
-    - **First Firstname Message** Enter an error message to display when the firstname field does not match the pattern.
+    - **Firstname Error Message** Enter an error message to display when the firstname field does not match the pattern.
     - **Enable Lastname Validation** Set to `Yes` to enable validation for the lastname field.
     - **Lastname Regex:** Enter a regex pattern to validate the lastname field.
     - **Lastname Error Message:** Enter an error message to display when the lastname field does not match the pattern.
