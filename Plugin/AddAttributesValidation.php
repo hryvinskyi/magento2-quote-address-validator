@@ -10,8 +10,15 @@ use Magento\Quote\Model\QuoteAddressValidator;
 
 class AddAttributesValidation
 {
-    private AddressValidationInterface $addressValidation;
-    private ConfigInterface $config;
+    /**
+     * @var AddressValidationInterface 
+     */
+    private $addressValidation;
+
+    /**
+     * @var ConfigInterface 
+     */
+    private $config;
 
     public function __construct(
         AddressValidationInterface $addressValidation,

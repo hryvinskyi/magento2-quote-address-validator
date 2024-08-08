@@ -24,13 +24,20 @@ The `Hryvinskyi_QuoteAddressValidator` module provides validation for quote addr
 1. Navigate to `Stores > Configuration > Security > Quote Address Validator.`
 2. Configure the following fields:
     - **Enable:** Set to `Yes` to enable the module.
+    - **Validation Type:** Select the type of validation to apply to the address fields.
+        - **`Validate by Regex`** - Validate the address fields using a regex pattern.
+        - **`Validate by stopwords`** - Validate the address fields using a list of stopwords.
+        - **`Validate by stopwords and regex`** - Validate the address fields using a list of stopwords and a regex pattern.
     - **Enable Firstname Validation** Set to `Yes` to enable validation for the firstname field.
+    - **Firstname Stopwords** Enter a list of stopwords to validate the firstname field.
     - **Firstname Regex** Enter a regex pattern to validate the firstname field.
     - **Firstname Error Message** Enter an error message to display when the firstname field does not match the pattern.
     - **Enable Lastname Validation** Set to `Yes` to enable validation for the lastname field.
+    - **Lastname Stopwords:** Enter a list of stopwords to validate the lastname field.
     - **Lastname Regex:** Enter a regex pattern to validate the lastname field.
     - **Lastname Error Message:** Enter an error message to display when the lastname field does not match the pattern.
     - **Enable Street Validation** Set to `Yes` to enable validation for the street field.
+    - **Street Stopwords:** Enter a list of stopwords to validate the street field.
     - **Street Regex:** Enter a regex pattern to validate the street field.
     - **Street Error Message:** Enter an error message to display when the street field does not match the pattern.
 
@@ -44,6 +51,12 @@ php bin/magento hryvinskyi:quote-address-validator:check-existing-addresses
 
 This command will validate all existing quote addresses and display any errors that are found.
 This is useful for detecting country-specific errors in addresses and names and changing Regex patterns for validation.
+
+<details>
+<summary>Console Responce Example. Click to expand</summary>
+
+![console_response.png](./docs/images/console_response.png)
+</details>
 
 ## Example Regex Patterns
 
@@ -74,6 +87,11 @@ This is useful for detecting country-specific errors in addresses and names and 
 
 Preference for `\Magento\Quote\Model\BillingAddressManagement` added only for correct error message display. (added `LocalizedException` catch to `assign` method)
 
-## Demo
+## Demo Backend
 
-![Admin](./docs/images/configuration_settings_stores_magento_admin.png)
+![Admin](./docs/images/configuration_settings_stores_magento_admin.gif)
+
+
+## Demo Frontend
+
+![Admin](./docs/images/checkout_testing.gif)
