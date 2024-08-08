@@ -11,9 +11,16 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class CheckExistingAddresses extends Command
 {
-    private CollectionFactory $quoteAddressCollectionFactory;
-    private AddressValidationInterface $addressValidation;
+    /**
+     * @var CollectionFactory 
+     */
+    private $quoteAddressCollectionFactory;
 
+    /**
+     * @var AddressValidationInterface 
+     */
+    private $addressValidation;
+    
     public function __construct(
         CollectionFactory $quoteAddressCollectionFactory,
         AddressValidationInterface $addressValidation
