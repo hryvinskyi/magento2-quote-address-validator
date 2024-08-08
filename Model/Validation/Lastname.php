@@ -7,31 +7,23 @@ use Hryvinskyi\QuoteAddressValidator\Model\ValidationInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Quote\Api\Data\AddressInterface;
 
-class Lastname implements ValidationInterface
+class Lastname extends AbstractValidator
 {
-    private ConfigInterface $config;
-
-    public function __construct(ConfigInterface $config)
-    {
-        $this->config = $config;
-    }
-
     /**
      * @inheritDoc
      */
     public function execute(AddressInterface $address): bool
     {
-        if (!$this->config->isEnabledLastname()) {
+        if (!$this->getConfig()->isEnabledLastname()) {
             return true;
         }
 
-        $pattern = $this->config->getLastnameRegex();
         $value = (string)$address->getLastname();
 
-        if ($value === '' || preg_match($pattern, $value) === 1) {
+        if ($value === '' || $this->validate($value, $this->getConfig()->getLastnameRegex(), $this->getConfig()->getLastnameStopwords())) {
             return true;
         }
 
-        throw new LocalizedException(__($this->config->getLastnameErrorMessage(), $address->getLastname()));
+        throw new LocalizedException(__($this->getConfig()->getLastnameErrorMessage(), $address->getLastname()));
     }
 }

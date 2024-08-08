@@ -12,6 +12,12 @@ class Config implements ConfigInterface
     public const XML_CONF_ENABLED_LASTNAME = 'quote_address_validator/general/enabled_lastname';
     public const XML_CONF_ENABLED_STREET = 'quote_address_validator/general/enabled_street';
 
+    public const XML_CONF_VALIDATION_TYPE = 'quote_address_validator/general/validation_type';
+
+    public const XML_CONF_FIRSTNAME_STOPWORDS = 'quote_address_validator/general/firstname_stopwords';
+    public const XML_CONF_LASTNAME_STOPWORDS = 'quote_address_validator/general/lastname_stopwords';
+    public const XML_CONF_STREET_STOPWORDS = 'quote_address_validator/general/street_stopwords';
+
     public const XML_CONF_FIRSTNAME_REGEX = 'quote_address_validator/general/firstname_regex';
     public const XML_CONF_LASTNAME_REGEX = 'quote_address_validator/general/lastname_regex';
     public const XML_CONF_STREET_REGEX = 'quote_address_validator/general/street_regex';
@@ -38,6 +44,14 @@ class Config implements ConfigInterface
     /**
      * @inheritDoc
      */
+    public function getValidationType($store = null, string $scope = ScopeInterface::SCOPE_STORE): int
+    {
+        return (int)$this->scopeConfig->getValue(self::XML_CONF_VALIDATION_TYPE, $scope, $store);
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function isEnabledFirstname($store = null, string $scope = ScopeInterface::SCOPE_STORE): bool
     {
         return $this->scopeConfig->isSetFlag(self::XML_CONF_ENABLED_FIRSTNAME, $scope, $store);
@@ -57,6 +71,42 @@ class Config implements ConfigInterface
     public function isEnabledStreet($store = null, string $scope = ScopeInterface::SCOPE_STORE): bool
     {
         return $this->scopeConfig->isSetFlag(self::XML_CONF_ENABLED_STREET, $scope, $store);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFirstnameStopwords($store = null, string $scope = ScopeInterface::SCOPE_STORE): array
+    {
+        return array_filter(
+            array_unique(
+                explode(',', (string)$this->scopeConfig->getValue(self::XML_CONF_FIRSTNAME_STOPWORDS, $scope, $store))
+            )
+        );
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getLastnameStopwords($store = null, string $scope = ScopeInterface::SCOPE_STORE): array
+    {
+        return array_filter(
+            array_unique(
+                explode(',', (string)$this->scopeConfig->getValue(self::XML_CONF_LASTNAME_STOPWORDS, $scope, $store))
+            )
+        );
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getStreetStopwords($store = null, string $scope = ScopeInterface::SCOPE_STORE): array
+    {
+        return array_filter(
+            array_unique(
+                explode(',', (string)$this->scopeConfig->getValue(self::XML_CONF_STREET_STOPWORDS, $scope, $store))
+            )
+        );
     }
 
     /**

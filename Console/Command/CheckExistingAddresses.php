@@ -5,6 +5,7 @@ namespace Hryvinskyi\QuoteAddressValidator\Console\Command;
 use Hryvinskyi\QuoteAddressValidator\Model\AddressValidationInterface;
 use Magento\Quote\Model\ResourceModel\Quote\Address\CollectionFactory;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -40,26 +41,60 @@ class CheckExistingAddresses extends Command
      *
      * @return void
      */
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln('Check existing addresses in the database');
+        $formatter = $this->getHelper('formatter');
+        $infoStyle = new OutputFormatterStyle('white', 'blue');
+        $output->getFormatter()->setStyle('info', $infoStyle);
+        $formattedInfoBlock = $formatter->formatBlock(['INFO:', 'Check existing addresses in the database'], 'info', TRUE);
+
+        $output->writeln('');
+        $output->writeln($formattedInfoBlock);
+        $output->writeln('');
+
+
+        $successStyle = new OutputFormatterStyle('white', 'green');
+        $output->getFormatter()->setStyle('success', $successStyle);
 
         // Get all addresses
         $collection = $this->quoteAddressCollectionFactory->create();
         $collection->addFieldToSelect('*');
         $collection->setPageSize(50);
         $pages = $collection->getLastPageNumber();
+        $foundAddresses = [];
+        $found = 0;
+
         for ($pageNum = 1; $pageNum <= $pages; $pageNum++) {
             $collection->setCurPage($pageNum);
             foreach ($collection as $item) {
-                try {
-                    $this->addressValidation->validate($item);
-                } catch (\Exception $e) {
-                    $output->writeln('Address type: ' . $item->getAddressType() . ' ID: ' . $item->getId() . ' - ' . $e->getMessage());
+                foreach ($this->addressValidation->getValidations() as $validation) {
+                    try {
+                        $validation->execute($item);
+                    } catch (\Exception $e) {
+                        $foundAddresses[$item->getId()] = 1;
+                        $found++;
+                        $addressType = $item->getAddressType() ? '<success>' . $item->getAddressType() . '</success>' : '<error>EMPTY</error>';
+                        $output->writeln('Address type: ' . $addressType . '</info>; ID: <success>' . $item->getId() . '</success>; Message: <fg=#c0392b;bg=black>' . $e->getMessage() . '</>');
+                    }
                 }
             }
+
             $collection->clear();
         }
-    }
 
+        $output->writeln('');
+
+        if ($found === 0) {
+            $infoStyle = new OutputFormatterStyle('white', 'green');
+            $output->getFormatter()->setStyle('info', $infoStyle);
+            $output->writeln('All addresses are valid');
+        } else {
+            $infoStyle = new OutputFormatterStyle('white', 'red');
+            $output->getFormatter()->setStyle('info', $infoStyle);
+            $formattedInfoBlock = $formatter->formatBlock(['RESULT:', 'We found ' . array_sum($foundAddresses) . ' addresses with issues and ' . $found . ' fields which do not pass validation. Please update validation regex.'], 'info', TRUE);
+            $output->writeln($formattedInfoBlock);
+        }
+
+        return 0;
+    }
 }

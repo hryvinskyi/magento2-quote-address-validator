@@ -31,8 +31,16 @@ class AddressValidation implements AddressValidationInterface
      */
     public function validate(AddressInterface $address): void
     {
-        foreach ($this->validations as $validation) {
+        foreach ($this->getValidations() as $validation) {
             $validation->execute($address);
         }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getValidations(): array
+    {
+        return $this->validations;
     }
 }

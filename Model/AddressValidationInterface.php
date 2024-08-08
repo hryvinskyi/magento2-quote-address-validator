@@ -13,4 +13,11 @@ interface AddressValidationInterface
      * @throw \Magento\Framework\Exception\LocalizedException If the address is invalid
      */
     public function validate(AddressInterface $address): void;
+    
+    /**
+     * Return list of validations.
+     *
+     * @return ValidationInterface[]
+     */
+    public function getValidations(): array;
 }

@@ -14,6 +14,15 @@ interface ConfigInterface
      * @return bool True if enabled, false otherwise
      */
     public function isEnabled($store = null, string $scope = ScopeInterface::SCOPE_STORE): bool;
+    
+    /**
+     * Get the validation type for the address fields.
+     *
+     * @param null|int|string|\Magento\Store\Api\Data\StoreInterface $store Store ID or store code or store object (optional)
+     * @param string $scope Scope of the configuration value (optional)
+     * @return int Validation type
+     */
+    public function getValidationType($store = null, string $scope = ScopeInterface::SCOPE_STORE): int;
 
     /**
      * Check if firstname validation is enabled.
@@ -41,6 +50,33 @@ interface ConfigInterface
      * @return bool True if enabled, false otherwise
      */
     public function isEnabledStreet($store = null, string $scope = ScopeInterface::SCOPE_STORE): bool;
+    
+    /**
+     * Get the list of stopwords for firstname validation.
+     *
+     * @param null|int|string|\Magento\Store\Api\Data\StoreInterface $store Store ID or store code or store object (optional)
+     * @param string $scope Scope of the configuration value (optional)
+     * @return array List of stopwords
+     */
+    public function getFirstnameStopwords($store = null, string $scope = ScopeInterface::SCOPE_STORE): array;
+    
+    /**
+     * Get the list of stopwords for lastname validation.
+     *
+     * @param null|int|string|\Magento\Store\Api\Data\StoreInterface $store Store ID or store code or store object (optional)
+     * @param string $scope Scope of the configuration value (optional)
+     * @return array List of stopwords
+     */
+    public function getLastnameStopwords($store = null, string $scope = ScopeInterface::SCOPE_STORE): array;
+    
+    /**
+     * Get the list of stopwords for street validation.
+     *
+     * @param null|int|string|\Magento\Store\Api\Data\StoreInterface $store Store ID or store code or store object (optional)
+     * @param string $scope Scope of the configuration value (optional)
+     * @return array List of stopwords
+     */
+    public function getStreetStopwords($store = null, string $scope = ScopeInterface::SCOPE_STORE): array;
 
     /**
      * Get the regex pattern for validating firstname.

@@ -18,7 +18,12 @@
                     <comment>Enable Quote Address Validation</comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="enabled_firstname" translate="label" type="select" sortOrder="200" showInDefault="1"
+                <field id="validation_type" translate="label" type="select" sortOrder="200" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Validation Type</label>
+                    <source_model>Hryvinskyi\QuoteAddressValidator\Model\Config\Source\ValidationType</source_model>
+                </field>
+                <field id="enabled_firstname" translate="label" type="select" sortOrder="300" showInDefault="1"
                        showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Enable Firstname Validation</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -26,24 +31,35 @@
                         <field id="enabled">1</field>
                     </depends>
                 </field>
-                <field id="firstname_regex" translate="label" sortOrder="300" showInDefault="1"
+                <field id="firstname_stopwords" translate="label" sortOrder="400" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Firstname Stopwords</label>
+                    <comment><![CDATA[Please fill correct stopwords. Comma delimiter. Like: {{,}},gettemplate,base64_,afterfiltercall,.filter(]]></comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                        <field id="enabled_firstname">1</field>
+                        <field id="validation_type" separator=";">2;3</field>
+                    </depends>
+                </field>
+                <field id="firstname_regex" translate="label" sortOrder="500" showInDefault="1"
                        showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Firstname Regex</label>
-                    <comment><![CDATA[Please fill correct regex. Like: <code>/^([\p{L}' \-]{2,50})$/u</code>]]></comment>
+                    <comment><![CDATA[Please fill correct regex. Like: <code>/^([\p{L}0-9&#$€£¥¢%&?!()@_:;,'+\s\-\.\*\/\\\\]{1,50})$/u</code>]]></comment>
                     <depends>
                         <field id="enabled">1</field>
                         <field id="enabled_firstname">1</field>
+                        <field id="validation_type" separator=";">1;3</field>
                     </depends>
                 </field>
-                <field id="firstname_error_message" translate="label" sortOrder="400" showInDefault="1"
+                <field id="firstname_error_message" translate="label" sortOrder="600" showInDefault="1"
                        showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Firstname Message</label>
+                    <label>First Firstname Message</label>
                     <depends>
                         <field id="enabled">1</field>
                         <field id="enabled_firstname">1</field>
                     </depends>
                 </field>
-                <field id="enabled_lastname" translate="label" type="select" sortOrder="500" showInDefault="1"
+                <field id="enabled_lastname" translate="label" type="select" sortOrder="700" showInDefault="1"
                        showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Enable Lastname Validation</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -51,24 +67,35 @@
                         <field id="enabled">1</field>
                     </depends>
                 </field>
-                <field id="lastname_regex" translate="label" sortOrder="600" showInDefault="1"
+                <field id="lastname_stopwords" translate="label" sortOrder="800" showInDefault="1"
                        showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Lastname Regex</label>
-                    <comment><![CDATA[Please fill correct regex. Like: <code>/^([\p{L}' \-]{2,50})$/u</code>]]></comment>
+                    <label>Lastname Stopwords</label>
+                    <comment><![CDATA[Please fill correct stopwords. Comma delimiter. Like: {{,}},gettemplate,base64_,afterfiltercall,.filter(]]></comment>
                     <depends>
                         <field id="enabled">1</field>
                         <field id="enabled_lastname">1</field>
+                        <field id="validation_type" separator=";">2;3</field>
                     </depends>
                 </field>
-                <field id="lastname_error_message" translate="label" sortOrder="700" showInDefault="1"
+                <field id="lastname_regex" translate="label" sortOrder="900" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Lastname Regex</label>
+                    <comment><![CDATA[Please fill correct regex. Like: <code>/^([\p{L}0-9&#$€£¥¢%&?!()@_:;,'+\s\-\.\*\/\\\\]{1,50})$/u</code>]]></comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                        <field id="enabled_lastname">1</field>
+                        <field id="validation_type" separator=";">1;3</field>
+                    </depends>
+                </field>
+                <field id="lastname_error_message" translate="label" sortOrder="1000" showInDefault="1"
                        showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Lastname Error Message</label>
                     <depends>
                         <field id="enabled">1</field>
-                        <field id="enabled_lastname">1</field>
+                        <field id="enabled_lastname" separator=";">1</field>
                     </depends>
                 </field>
-                <field id="enabled_street" translate="label" type="select" sortOrder="800" showInDefault="1"
+                <field id="enabled_street" translate="label" type="select" sortOrder="1100" showInDefault="1"
                        showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Enable Street Validation</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -76,28 +103,72 @@
                         <field id="enabled">1</field>
                     </depends>
                 </field>
-                <field id="street_regex" translate="label" sortOrder="900" showInDefault="1"
+                <field id="street_stopwords" translate="label" sortOrder="1200" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Street Stopwords</label>
+                    <comment><![CDATA[Please fill correct stopwords. Comma delimiter. Like: {{,}},gettemplate,base64_,afterfiltercall,.filter(]]></comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                        <field id="enabled_street">1</field>
+                        <field id="validation_type" separator=";">2;3</field>
+                    </depends>
+                </field>
+                <field id="street_regex" translate="label" sortOrder="1300" showInDefault="1"
                        showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Street Regex</label>
-                    <comment><![CDATA[
-<p>Please fill correct regex. Like: <code>/^[\p{L}0-9\s,'\-\.#\/\\\\]*$/u</code></p>
-<p>Explanation of the Regex</p>
-<ul>
+                    <comment><![CDATA[<p>Please fill correct regex. Like: <code>/^([\p{L}0-9&#$€£¥¢%&?!()@_:;,'+\s\-\.\*\/\\\\]*)$/u</code></p>]]></comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                        <field id="enabled_street">1</field>
+                        <field id="validation_type" separator=";">1;3</field>
+                    </depends>
+                </field>
+                <field id="street_error_message" translate="label" sortOrder="1400" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Street Error Message</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                        <field id="enabled_street" separator=";">1</field>
+                    </depends>
+                </field>
+
+                <field id="info_block" translate="label" type="note" sortOrder="1000000" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Explanation of the Regex</label>
+                    <comment><![CDATA[<ul>
     <li><code>^</code>: asserts position at start of the string</li>
-    <li><code>[\p{L}0-9\s,'-\.#\/]</code>: A character class that allows:
+    <li><code>[\p{L}0-9&#$€£¥¢%&?!()@_:;,'+\s\-\.\*\/\\\\]</code>: A character class that allows:
         <ul style="margin-left:25px">
             <li><code>\p{L}</code>: in a regex pattern, it will match any character that is considered a letter in Unicode.</li>
             <li><code>0-9</code>: Any digit.</li>
+            <li><code>&</code>: Ampersand.</li>
+            <li><code>#</code>: Hash symbol.</li>
+            <li><code>$</code>: Dollar sign.</li>
+            <li><code>€</code>: Euro sign.</li>
+            <li><code>£</code>: Pound sign.</li>
+            <li><code>¥</code>: Yen sign.</li>
+            <li><code>¢</code>: Cent sign.</li>
+            <li><code>%</code>: Percent sign.</li>
+            <li><code>?</code>: Question mark.</li>
+            <li><code>!</code>: Exclamation mark.</li>
+            <li><code>(</code>: Opening parenthesis.</li>
+            <li><code>)</code>: Closing parenthesis.</li>
+            <li><code>@</code>: At symbol.</li>
+            <li><code>_</code>: Underscore.</li>
+            <li><code>:</code>: Colon.</li>
+            <li><code>;</code>: Semicolon.</li>
+            <li><code>,</code>: Comma.</li>
+            <li><code>'</code>: Apostrophe.</li>
+            <li><code>+</code>: Plus sign.</li>
             <li><code>\s</code>: Any whitespace character (spaces, tabs, line breaks).</li>
-            <li><code>,'</code>: Comma and apostrophe.</li>
             <li><code>\-</code>: Hyphen. (Note that the hyphen is escaped because it is a special character in regex.)</li>
             <li><code>\.</code>: Period. (Note that the dot is escaped because it is a special character in regex.)</li>
-            <li><code>#</code>: Hash symbol.</li>
+            <li><code>\*</code>: Asterisk. (Note that the asterisk is escaped because it is a special character in regex.)</li>
             <li><code>\/</code>: Forward slash. (Note that the slash is escaped because it is a special character in regex.)</li></li>
             <li><code>\\\\</code>: Backslash (the double backslash is necessary to escape the backslash itself in PHP strings and regex).</li></li>
         </ul>
     </li>
     <li><code>*</code>: Matches zero or more occurrences of the preceding element.</li>
+    <li><code>{1,50}</code>: Matches between 1 and 50 occurrences of the preceding element.</li>
     <li><code>$</code>: asserts position at the end of the string.</li>
     <li><code>u</code>: modifier: Treats the pattern as UTF-8, necessary for proper Unicode matching.</li>
 </ul>
@@ -108,20 +179,7 @@
         border-radius: 3px;
         border: 1px solid #e1b3c3;
     }
-</style>
-]]></comment>
-                    <depends>
-                        <field id="enabled">1</field>
-                        <field id="enabled_street">1</field>
-                    </depends>
-                </field>
-                <field id="street_error_message" translate="label" sortOrder="1000" showInDefault="1"
-                       showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Street Error Message</label>
-                    <depends>
-                        <field id="enabled">1</field>
-                        <field id="enabled_street">1</field>
-                    </depends>
+</style>]]></comment>
                 </field>
             </group>
         </section>
