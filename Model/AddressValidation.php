@@ -9,7 +9,7 @@ class AddressValidation implements AddressValidationInterface
     /**
      * @var ValidationInterface[]
      */
-    private array $validations = [];
+    private $validations = [];
 
     /**
      * @param ValidationInterface[] $validations

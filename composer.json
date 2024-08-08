@@ -1,18 +1,19 @@
 {
-  "name": "hryvinskyi/magento2-quote-address-validator",
-  "version": "1.0.2",
-  "description": "N/A",
-  "type": "magento2-module",
-  "require": {
-    "magento/framework": "*",
-    "magento/module-quote": "*"
-  },
-  "autoload": {
-    "files": [
-      "registration.php"
-    ],
-    "psr-4": {
-      "Hryvinskyi\\QuoteAddressValidator\\": ""
+    "name": "hryvinskyi/magento2-quote-address-validator",
+    "version": "1.0.2",
+    "description": "N/A",
+    "type": "magento2-module",
+    "require": {
+        "php": "~7.3.0||~7.4.0||~8.0||~8.1||~8.2||~8.3",
+        "magento/framework": "*",
+        "magento/module-quote": "*"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Hryvinskyi\\QuoteAddressValidator\\": ""
+        }
     }
-  }
 }
