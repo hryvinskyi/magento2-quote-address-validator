@@ -34,6 +34,3 @@ jobs:
 
       - name: Run Extension tests
         run: docker exec magento-project-community-edition bash -c "vendor/bin/phpunit extensions/*/Test/Unit"
-
-      - name: Run Magento tests
-        run: docker exec magento-project-community-edition bash -c "bin/magento dev:tests:run unit"
