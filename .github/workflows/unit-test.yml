@@ -32,5 +32,8 @@ jobs:
       - name: Activate the extension
         run: docker exec magento-project-community-edition ./retry "php bin/magento module:enable Hryvinskyi_QuoteAddressValidator && php bin/magento setup:upgrade && php bin/magento setup:di:compile"
 
-      - name: Run tests
+      - name: Run Extension tests
         run: docker exec magento-project-community-edition bash -c "vendor/bin/phpunit extensions/*/Test/Unit"
+
+      - name: Run Magento tests
+        run: docker exec magento-project-community-edition bash -c "bin/magento dev:tests:run unit"
