@@ -39,7 +39,7 @@ The `Hryvinskyi_QuoteAddressValidator` module provides validation for quote addr
 The module provides a command-line interface (CLI) to validate quote addresses. To use the CLI, run the following command:
 
 ```bash
-    php bin/magento hryvinskyi:quote-address-validator:check-existing-addresses
+php bin/magento hryvinskyi:quote-address-validator:check-existing-addresses
 ```
 
 This command will validate all existing quote addresses and display any errors that are found.
