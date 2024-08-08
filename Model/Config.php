@@ -26,7 +26,10 @@ class Config implements ConfigInterface
     public const XML_CONF_LASTNAME_ERROR_MESSAGE = 'quote_address_validator/general/lastname_error_message';
     public const XML_CONF_STREET_ERROR_MESSAGE = 'quote_address_validator/general/street_error_message';
 
-    private ScopeConfigInterface $scopeConfig;
+    /**
+     * @var ScopeConfigInterface 
+     */
+    private $scopeConfig;
 
     public function __construct(ScopeConfigInterface $scopeConfig)
     {

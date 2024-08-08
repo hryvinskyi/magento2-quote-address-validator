@@ -6,7 +6,10 @@ use Hryvinskyi\QuoteAddressValidator\Model\ConfigInterface;
 
 abstract class AbstractValidator implements \Hryvinskyi\QuoteAddressValidator\Model\ValidationInterface
 {
-    private ConfigInterface $config;
+    /**
+     * @var ConfigInterface 
+     */
+    private $config;
 
     public function __construct(ConfigInterface $config)
     {
