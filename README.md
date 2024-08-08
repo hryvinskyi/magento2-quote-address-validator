@@ -66,7 +66,6 @@ This is useful for detecting country-specific errors in addresses and names and 
 
 ## Explanation of Regex
 
-```markdown
 - `^`: asserts position at start of the string
 - `[\p{L}0-9&#$€£¥¢%&?!()@_:;,'+\s\-\.\*\/\\\\]`: A character class that allows:
     - `\p{L}`: in a regex pattern, it will match any character that is considered a letter in Unicode.
@@ -100,7 +99,6 @@ This is useful for detecting country-specific errors in addresses and names and 
 - `{1,50}`: Matches between 1 and 50 occurrences of the preceding element.
 - `$`: asserts position at the end of the string.
 - `u`: modifier: Treats the pattern as UTF-8, necessary for proper Unicode matching.
-```
 
 ## Notes
 
