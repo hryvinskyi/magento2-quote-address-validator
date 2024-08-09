@@ -1,9 +1,5 @@
 # Hryvinskyi_QuoteAddressValidator
-[![Latest Stable Version](http://poser.pugx.org/hryvinskyi/magento2-quote-address-validator/v)](https://packagist.org/packages/hryvinskyi/magento2-quote-address-validator)
-[![Total Downloads](http://poser.pugx.org/hryvinskyi/magento2-quote-address-validator/downloads)](https://packagist.org/packages/hryvinskyi/magento2-quote-address-validator)
-[![Latest Unstable Version](http://poser.pugx.org/hryvinskyi/magento2-quote-address-validator/v/unstable)](https://packagist.org/packages/hryvinskyi/magento2-quote-address-validator)
-[![License](http://poser.pugx.org/hryvinskyi/magento2-quote-address-validator/license)](https://packagist.org/packages/hryvinskyi/magento2-quote-address-validator)
-[![PHP Version Require](http://poser.pugx.org/hryvinskyi/magento2-quote-address-validator/require/php)](https://packagist.org/packages/hryvinskyi/magento2-quote-address-validator)
+[![Latest Stable Version](http://poser.pugx.org/hryvinskyi/magento2-quote-address-validator/v)](https://packagist.org/packages/hryvinskyi/magento2-quote-address-validator) [![Total Downloads](http://poser.pugx.org/hryvinskyi/magento2-quote-address-validator/downloads)](https://packagist.org/packages/hryvinskyi/magento2-quote-address-validator) [![Latest Unstable Version](http://poser.pugx.org/hryvinskyi/magento2-quote-address-validator/v/unstable)](https://packagist.org/packages/hryvinskyi/magento2-quote-address-validator) [![License](http://poser.pugx.org/hryvinskyi/magento2-quote-address-validator/license)](https://packagist.org/packages/hryvinskyi/magento2-quote-address-validator) [![PHP Version Require](http://poser.pugx.org/hryvinskyi/magento2-quote-address-validator/require/php)](https://packagist.org/packages/hryvinskyi/magento2-quote-address-validator)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/hryvinskyi/magento2-quote-address-validator/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/hryvinskyi/magento2-quote-address-validator/?branch=master)
 ![workflow](https://github.com/hryvinskyi/magento2-quote-address-validator/actions/workflows/unit-test.yml/badge.svg)
 ## Overview
