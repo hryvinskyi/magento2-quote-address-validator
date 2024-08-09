@@ -27,7 +27,7 @@ class Config implements ConfigInterface
     public const XML_CONF_STREET_ERROR_MESSAGE = 'quote_address_validator/general/street_error_message';
 
     /**
-     * @var ScopeConfigInterface 
+     * @var ScopeConfigInterface
      */
     private $scopeConfig;
 
@@ -81,11 +81,13 @@ class Config implements ConfigInterface
      */
     public function getFirstnameStopwords($store = null, string $scope = ScopeInterface::SCOPE_STORE): array
     {
-        return array_filter(
-            array_unique(
-                explode(',', (string)$this->scopeConfig->getValue(self::XML_CONF_FIRSTNAME_STOPWORDS, $scope, $store))
-            )
-        );
+        $stopwords = $this->scopeConfig->getValue(self::XML_CONF_FIRSTNAME_STOPWORDS, $scope, $store);
+
+        if (!$stopwords) {
+            return [];
+        }
+
+        return array_values(array_unique(array_filter(array_map('trim', explode(',', $stopwords)))));
     }
 
     /**
@@ -93,11 +95,13 @@ class Config implements ConfigInterface
      */
     public function getLastnameStopwords($store = null, string $scope = ScopeInterface::SCOPE_STORE): array
     {
-        return array_filter(
-            array_unique(
-                explode(',', (string)$this->scopeConfig->getValue(self::XML_CONF_LASTNAME_STOPWORDS, $scope, $store))
-            )
-        );
+        $stopwords = $this->scopeConfig->getValue(self::XML_CONF_LASTNAME_STOPWORDS, $scope, $store);
+
+        if (!$stopwords) {
+            return [];
+        }
+
+        return array_values(array_unique(array_filter(array_map('trim', explode(',', $stopwords)))));
     }
 
     /**
@@ -105,11 +109,13 @@ class Config implements ConfigInterface
      */
     public function getStreetStopwords($store = null, string $scope = ScopeInterface::SCOPE_STORE): array
     {
-        return array_filter(
-            array_unique(
-                explode(',', (string)$this->scopeConfig->getValue(self::XML_CONF_STREET_STOPWORDS, $scope, $store))
-            )
-        );
+        $stopwords = $this->scopeConfig->getValue(self::XML_CONF_STREET_STOPWORDS, $scope, $store);
+
+        if (!$stopwords) {
+            return [];
+        }
+
+        return array_values(array_unique(array_filter(array_map('trim', explode(',', $stopwords)))));
     }
 
     /**
